@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:16-alpine
+    container_name: procureflow-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-procureflow_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-procureflow_secure_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-procureflow}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U procureflow_user -d procureflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ProcureFlow AI FastAPI + LangGraph Agent Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: procureflow-api
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://procureflow_user:procureflow_secure_pass@db:5432/procureflow
+      - LLM_PROVIDER=${LLM_PROVIDER:-mock}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - HIGH_RISK_REFUND_THRESHOLD=100.0
+      - FAISS_INDEX_PATH=/app/data/faiss_index.bin
+      - FAISS_METADATA_PATH=/app/data/faiss_metadata.json
+    volumes:
+      - app_data:/app/data
+    command: >
+      sh -c "python scripts/seed_data.py --orders 1500 --batch-size 500 &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  postgres_data:
+  app_data:
+
