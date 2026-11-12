@@ -125,17 +125,6 @@ Ground-Truth Evidence Acc. : 100.0% (Target: >= 90.0%)
 
 ---
 
-## Resume Alignment & Key Highlights
-
-This codebase directly implements and proves every claim in the resume bullet points:
-
-- **Unified Data Pipeline (100K+ Orders):** Built a high-throughput Python/FastAPI data ingestion and cleaning pipeline connecting 100K+ orders across customers, sellers, products, payments, and delivery records from the public Olist Brazilian E-Commerce dataset.
-- **LangGraph Multi-Node AI Agent (Claude, PostgreSQL & FAISS):** Engineered an agentic state graph utilizing Claude/offline reasoning, PostgreSQL/SQLite, and FAISS vector retrieval to identify delayed shipments, diagnose carrier vs. seller bottlenecks, and reconcile payment discrepancies.
-- **Human-In-The-Loop (HITL) Trust Guardrails:** Quarantines sensitive operations (refunds > $100, vendor penalties, SLA breaches) in an authorization queue for procurement officers, targeting **85% task completion** and **90% evidence accuracy** (achieved **100%** on both in evaluation).
-- **Sub-800 ms P95 Retrieval Latency & Production Packaging:** Shipped via FastAPI REST APIs and Docker Compose, achieving **2.94 ms p95 retrieval latency** (exceeding the < 800 ms SLA target by 99.6%), backed by automated PyTest test suite, CI/CD, and immutable audit logging.
-
----
-
 ## Detailed System Architecture
 
 ```mermaid
