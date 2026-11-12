@@ -1,0 +1,64 @@
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes flowLine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-flow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+  animation: flowLine 2.5s infinite linear;
+}
+
+.step-card {
+  transition: all 0.25s ease-in-out;
+}
+
+.step-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.15);
+}
+
+.step-active {
+  border-color: #06b6d4 !important;
+  background-color: rgba(6, 182, 212, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+.step-done {
+  border-color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  color: #6ee7b7 !important;
+}
