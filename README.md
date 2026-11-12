@@ -262,19 +262,6 @@ The web interface (`/`) provides an enterprise console:
 
 ---
 
-## Alignment with Salesforce AI Labs & Agentforce
-
-This project mirrors the architecture of **Salesforce Agentforce** and the rotational dimensions of the **Salesforce AI Labs Rotational Fellowship**:
-
-| Salesforce Fellowship Dimension | How ProcureFlow AI Demonstrates It |
-| :--- | :--- |
-| **Build (Product Engineering)** | Production-grade Python, FastAPI, SQLAlchemy 2.0, typed LangGraph state graphs, FAISS vector search, and Dockerized microservices. |
-| **Shape (Product Management)** | Solves real-world enterprise procurement pain points: automated root-cause attribution, SLA enforcement, and supplier dispute management. |
-| **Deliver (FDE / Builders)** | Designed for enterprise deployment with parameterized SQL guardrails, sub-800ms retrieval SLA, and zero-cost local execution. |
-| **Transform (Customer Zero / Trust Layer)** | **Human-in-the-Loop (HITL)** approval workflows preventing unauthorized financial adjustments, coupled with immutable audit logging. |
-
----
-
 ## Testing & CI/CD
 
 Run all unit, integration, and guardrail tests:
@@ -289,8 +276,3 @@ Test coverage includes:
 - `tests/test_hitl_approval.py`: Guardrail risk evaluation and human approval lifecycle.
 - `tests/test_api_endpoints.py`: FastAPI endpoints and benchmark responses.
 
----
-
-## License
-
-MIT License. Built for enterprise evaluation and demonstration.
