@@ -1,0 +1,55 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-benchmark:
+    name: Test & Performance Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libomp-dev
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8 pytest-cov
+
+      - name: Code Quality & Lint Check
+        run: |
+          flake8 app tests benchmarks --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 app tests benchmarks --count --exit-zero --max-complexity=15 --max-line-length=127 --statistics
+
+      - name: Seed Initial Dataset & Vector Index
+        run: |
+          python scripts/seed_data.py --reset --orders 1000
+
+      - name: Run Pytest Suite with Coverage
+        run: |
+          python -m pytest -v --cov=app --cov-report=term-missing tests/
+
+      - name: Verify P95 Retrieval Latency Benchmark (< 800 ms SLA)
+        run: |
+          python benchmarks/latency_benchmark.py
+
+      - name: Verify LangGraph Agent Task Completion & Evidence Accuracy
+        run: |
+          python benchmarks/evaluate_agent.py
+
