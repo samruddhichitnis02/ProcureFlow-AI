@@ -1,13 +1,13 @@
 # ProcureFlow AI: Enterprise Procurement Automation
 
-[![CI Pipeline](https://github.com/samrudh/ProcureFlow_AI/actions/workflows/ci.yml/badge.svg)](https://github.com/samrudh/ProcureFlow_AI/actions)
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
-[![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-orange.svg)](https://github.com/langchain-ai/langgraph)
-[![FastAPI](https://img.shields.io/badge/Framework-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
-[![FAISS](https://img.shields.io/badge/Vector%20Store-FAISS%20CPU-purple.svg)](https://github.com/facebookresearch/faiss)
-[![Docker Ready](https://img.shields.io/badge/Deployment-Docker%20%7C%20Compose-2496ED.svg)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Cost: 100% Free](https://img.shields.io/badge/Cost-100%25%20Free%20%2F%20Zero%20Spend-success.svg)](#100-free--zero-cost-execution)
+![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+![LangGraph](https://img.shields.io/badge/Agent-LangGraph-FF6F00?style=flat-square)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![FAISS](https://img.shields.io/badge/Vector%20Store-FAISS-purple?style=flat-square)
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-19%20Passing-brightgreen?style=flat-square)
+![Cost](https://img.shields.io/badge/Cost-100%25%20Free%20%2F%20Zero%20Spend-success?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
 > **Enterprise AI Procurement Automation & Investigation Platform** built on the public **Olist Brazilian E-Commerce Dataset**, orchestrating unified relational databases and vector search via an **Agentforce-aligned LangGraph AI Agent** with **Human-in-the-Loop (HITL) approval guardrails**, sub-800ms retrieval latency, and comprehensive audit logging.
 
@@ -194,17 +194,6 @@ python benchmarks/latency_benchmark.py
 # LangGraph task completion and evidence accuracy benchmark
 python benchmarks/evaluate_agent.py
 ```
-
----
-
-## 100% Free / Zero-Cost Execution
-
-This project is built from the ground up to **cost $0.00 to run and evaluate**:
-
-1. **Deterministic Local AI Engine (Default):** Includes a zero-cost local agent engine simulating Claude 3.5 Sonnet's reasoning and JSON tool-calling capabilities with zero external API calls and zero latency fees.
-2. **Pluggable Anthropic Claude:** If an `ANTHROPIC_API_KEY` is provided, the agent seamlessly upgrades to Claude 3.5 Sonnet (`claude-3-5-sonnet-20241022`).
-3. **Local Vector Search (FAISS CPU):** Uses local CPU-based FAISS vector indexing and dense semantic hashing (or free local SentenceTransformers) without requiring paid third-party embedding APIs (like OpenAI `text-embedding-3`).
-4. **Database:** Runs out-of-the-box on SQLite with zero setup, or PostgreSQL via Docker Compose.
 
 ---
 
